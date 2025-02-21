@@ -19,6 +19,7 @@ export class FnpFormComponent {
     name: new FormControl('', [Validators.required]),
     firstname: new FormControl('', [Validators.required]),
     mail: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
     city: new FormControl(null, [Validators.required]),
     actualOutletNumber: new FormControl('', Validators.required),
     totalOutletNumber: new FormControl('', Validators.required)
