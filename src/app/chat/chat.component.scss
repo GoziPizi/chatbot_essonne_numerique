@@ -6,7 +6,7 @@
 
     width: 400px;
     min-height: 300px;
-    max-height: 90vh;
+    max-height: 80vh;
 
     transition: height 0.3s;
 
@@ -19,6 +19,9 @@
 }
 
 #chatContent.isMobile {
+
+    max-height: 95vh;
+
     width: 95vw;
     height: 95vh;
 

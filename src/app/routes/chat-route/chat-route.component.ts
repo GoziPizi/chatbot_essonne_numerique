@@ -10,10 +10,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ChatComponent, CommonModule],
   templateUrl: './chat-route.component.html',
-  styleUrl: './chat-route.component.scss'
+  styleUrl: './chat-route.component.scss',
 })
 export class ChatRouteComponent {
-
   @ViewChild('mainChat') mainChat!: ChatComponent;
 
   constructor(
@@ -29,13 +28,12 @@ export class ChatRouteComponent {
   }
 
   ngAfterViewInit() {
-    if(this.isMobile) {
+    if (this.isMobile) {
       this.resizeService.setIconSize();
       this.resizeService.setMobile();
     } else {
       this.resizeService.startChatObserver(this.mainChat);
     }
-
   }
 
   openChat() {
@@ -50,5 +48,4 @@ export class ChatRouteComponent {
   get isMobile() {
     return this.deviceService.isMobile();
   }
-
 }
