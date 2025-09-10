@@ -14,12 +14,19 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-form-route',
   standalone: true,
-  imports: [CommonModule, FmaFormComponent, FbFormComponent, FdFormComponent, FnpFormComponent, FmnFormComponent, FcsFormComponent],
+  imports: [
+    CommonModule,
+    FmaFormComponent,
+    FbFormComponent,
+    FdFormComponent,
+    FnpFormComponent,
+    FmnFormComponent,
+    FcsFormComponent,
+  ],
   templateUrl: './form-route.component.html',
-  styleUrl: './form-route.component.scss'
+  styleUrl: './form-route.component.scss',
 })
 export class FormRouteComponent {
-
   @ViewChild(FbFormComponent) fbFormComponent!: FbFormComponent;
   @ViewChild(FmnFormComponent) fmnFormComponent!: FmnFormComponent;
   @ViewChild(FdFormComponent) fdFormComponent!: FdFormComponent;
@@ -29,10 +36,10 @@ export class FormRouteComponent {
 
   formDisplay: form = form.FBFORM;
   formNames = form;
-  endpoint = 'https://chatbot.essonnenumerique.com:8080/form-endpoint';
-  
+  endpoint = 'https://chatbot.essonnenumerique.com/api/form-endpoint';
+
   isMobile = this.deviceService.isMobile();
-  
+
   isLoading = false;
   isSentSuccessfull = false;
   error = false;
@@ -41,10 +48,10 @@ export class FormRouteComponent {
     private route: ActivatedRoute,
     private deviceService: DeviceDetectorService,
     private http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.formDisplay = params['form'];
     });
   }
@@ -122,10 +129,10 @@ export class FormRouteComponent {
       },
       error: (err: any) => {
         this.isLoading = false;
-        this.isSentSuccessfull = false
+        this.isSentSuccessfull = false;
         this.error = true;
-      }
-    })
+      },
+    });
   }
 
   get currentFormComponent() {
@@ -148,16 +155,15 @@ export class FormRouteComponent {
   }
 
   get isDisabled() {
-    if(this.isSentSuccessfull){
+    if (this.isSentSuccessfull) {
       return true;
     }
-    if(this.currentFormComponent){
+    if (this.currentFormComponent) {
       return this.currentFormComponent.isDisabled;
     }
-    if(!this.currentFormComponent){
+    if (!this.currentFormComponent) {
       return true;
     }
     return false;
   }
-
 }
